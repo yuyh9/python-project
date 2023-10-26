@@ -1,0 +1,50 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<div class="container pt-4">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>Search Results for "{{ query }}"</h2>
+      {% if todos %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Priority</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for todo in todos %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ todo.title }}</td>
+            <td>
+              {% if todo.status == 'C' %}
+              ✅
+              {% else %}
+              ⏳
+              {% endif %}
+            </td>
+            <td>{{ todo.priority }}</td>
+            <td>
+              <a href="/delete-todo/{{ todo.id }}" title="Delete" class="">🕳️</a>
+              {% if todo.status == 'P' %}
+              <a href="/change-status/{{ todo.id }}/C" title="Mark Completed" class="">✅</a>
+              {% else %}
+              <a href="/change-status/{{ todo.id }}/P" title="Mark Pending" class="">⏳</a>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No results found.</p>
+      {% endif %}
+      <a href="/" class="btn btn-primary">Back</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

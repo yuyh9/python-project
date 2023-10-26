@@ -1,0 +1,16 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+    <div class="container">
+        <div class="card todo-detail">
+            <div class="card-header">
+                <h2 class="card-title">{{ todo.title }}</h2>
+            </div>
+            <div class="card-body">
+                <p class="card-text"><strong>Status:</strong> {% if todo.status == 'C' %}Complete{% else %}Pending{% endif %}</p>
+                <p class="card-text"><strong>Priority:</strong> {{ todo.priority }}</p>
+                <p class="card-text"><strong>Todo Detail:</strong> {{ todo.todo_detail }}</p>
+            </div>
+        </div>
+        <a href="/" class="btn btn-primary">Back</a>
+    </div>
+{% endblock %}

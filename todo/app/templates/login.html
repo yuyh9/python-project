@@ -1,0 +1,19 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+  
+  <div class="container pt-4">
+    <div class="col-lg-4 mx-auto shadow p-0 mt-4">
+      <div class="alert alert-secondary">
+        <h2>Login </h2>
+      </div>
+      <div class="p-4">
+        <form action="/login/" method="POST">
+          {% csrf_token %}
+          {{form.as_p}}
+          <hr>
+          <input type="submit" value="Login" class="btn btn-info">
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
